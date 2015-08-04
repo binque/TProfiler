@@ -11,11 +11,10 @@ package com.taobao.profile.instrument;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.objectweb.asm.ClassAdapter;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.FieldVisitor;
-import org.objectweb.asm.MethodAdapter;
 import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
 
 import com.taobao.profile.Manager;
 
@@ -25,7 +24,7 @@ import com.taobao.profile.Manager;
  * @author luqi
  * @since 2010-6-23
  */
-public class ProfClassAdapter extends ClassAdapter {
+public class ProfClassAdapter extends ClassVisitor {
 	/**
 	 * 类名
 	 */
@@ -51,7 +50,7 @@ public class ProfClassAdapter extends ClassAdapter {
 	 * @param theClass
 	 */
 	public ProfClassAdapter(ClassVisitor visitor, String theClass) {
-		super(visitor);
+		super(Opcodes.ASM5, visitor);
 		this.mClassName = theClass;
 	}
 
@@ -93,7 +92,7 @@ public class ProfClassAdapter extends ClassAdapter {
 		}
 
 		MethodVisitor mv = super.visitMethod(arg, name, descriptor, signature, exceptions);
-		MethodAdapter ma = new ProfMethodAdapter(mv, mFileName, mClassName, name);
+		MethodVisitor ma = new ProfMethodAdapter(mv, mFileName, mClassName, name);
 		return ma;
 	}
 

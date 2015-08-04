@@ -37,7 +37,7 @@ public class ProfFilter {
 		excludePackage.add("java/");// 包含javax
 		excludePackage.add("sun/");// 包含sunw
 		excludePackage.add("com/sun/");
-		excludePackage.add("org/");// 包含org/xml org/jboss org/apache/xerces org/objectweb/asm  
+		//excludePackage.add("org/");// 包含org/xml org/jboss org/apache/xerces org/objectweb/asm  
 		// 不注入profile本身
 		excludePackage.add("com/taobao/profile");
 		excludePackage.add("com/taobao/hsf");
